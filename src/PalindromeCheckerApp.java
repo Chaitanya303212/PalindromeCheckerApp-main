@@ -1,24 +1,17 @@
 import java.util.Scanner;
 
-public class PalindromeCheckerApp {
+// Palindrome service class
+class PalindromeChecker {
 
-    public static boolean isPalindromeTwoPointer(String text) {
+    // Method to check palindrome
+    public boolean checkPalindrome(String text) {
 
         int left = 0;
         int right = text.length() - 1;
 
         while (left < right) {
 
-            while (left < right && !Character.isLetterOrDigit(text.charAt(left))) {
-                left++;
-            }
-
-            while (left < right && !Character.isLetterOrDigit(text.charAt(right))) {
-                right--;
-            }
-
-            if (Character.toLowerCase(text.charAt(left)) !=
-                Character.toLowerCase(text.charAt(right))) {
+            if (text.charAt(left) != text.charAt(right)) {
                 return false;
             }
 
@@ -28,17 +21,25 @@ public class PalindromeCheckerApp {
 
         return true;
     }
+}
+
+public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Enter text: ");
+        System.out.print("Enter a string: ");
         String text = sc.nextLine();
 
-        if (isPalindromeTwoPointer(text))
+        // Create object of service class
+        PalindromeChecker checker = new PalindromeChecker();
+
+        boolean result = checker.checkPalindrome(text);
+
+        if (result)
             System.out.println("Palindrome");
         else
-            System.out.println("Not Palindrome");
+            System.out.println("Not a Palindrome");
     }
 }
